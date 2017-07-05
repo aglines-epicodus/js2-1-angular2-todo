@@ -33,9 +33,6 @@ If anyone wants to download and run our project, they can run $ npm install and 
 > bower install bootstrap --save
 run gulp build and serve again
 
-
-
-
 ### Folder structure:
 angular2-todo
 ├── bower.json
@@ -46,5 +43,4 @@ angular2-todo
     ├── js  (any js that is NOT part of Angular)
     └── styles
 
-### Setup commands
-1.
+###
