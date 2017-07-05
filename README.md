@@ -14,6 +14,24 @@ If anyone wants to download and run our project, they can run $ npm install and 
 7. styles.css in styles folder
 8. tsconfig.json
 9. gulpfile.js
+10. Root component (already in body of HTML)
+11. In the project directory, create a folder called app and a app.component.ts file inside it. This is the standard file name for root components.
+12. app/app.module.ts
+13. app/main.ts
+14. systemjs.config.js to top level of directory
+
+### Run commands
+15. > npm install
+16. > bower install
+17. > gulp build
+18. > gulp serve
+  (Should see stuff at localhost:3000)
+19. > bower install bootstrap --save
+
+
+### Now
+> bower install bootstrap --save
+run gulp build and serve again
 
 
 

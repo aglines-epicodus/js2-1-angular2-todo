@@ -1,0 +1,17 @@
+{
+  "name": "js-1-angular2-todo",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/aglines-epicodus/js2-1-angular2-todo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
