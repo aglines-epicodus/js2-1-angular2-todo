@@ -7,12 +7,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-   <div class="container">
-      <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
-      <h3>{{currentFocus}}</h3>
-      <ul>
-        <li *ngFor="let currentTask of tasks">{{currentTask.description}}</li>
-      </ul>
+  <div class="container">
+    <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
+    <h3>{{currentFocus}}</h3>
+    <ul>
+      <li (click)="isDone(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}}   <button (click)="editTask()">Edit!</button></li>
+    </ul>
   </div>
   `
 })
@@ -29,6 +29,19 @@ export class AppComponent {
     new Task("Start on a, b, and c"),
     new Task("Read up on i, j, k")
   ];
+
+  editTask() {
+      console.log("You just requested to edit a Task!");
+  }
+
+  isDone(clickedTask: Task) {
+    if(clickedTask.done === true) {
+      console.log("this task is done");
+    } else {
+      console.log("this task is not done");
+    }
+  }
+
 }
 
 export class Task {
