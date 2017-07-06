@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 // Every component has an ANNOTATION and a CLASS DEFINITION
 
-// ANNOTATION / TEMPLATE
+// TEMPLATE / FRONT END
 @Component({
   selector: 'app-root',
   template: `
@@ -11,13 +11,22 @@ import { Component } from '@angular/core';
     <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{currentFocus}}</h3>
     <ul>
-      <li (click)="isDone(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}}   <button (click)="editTask()">Edit!</button></li>
+      <li [class]="priorityColor(currentTask)" (click)="isDone(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}}   <button (click)="editTask(currentTask)">Edit!</button></li>
     </ul>
   </div>
+    <h3>{{selectedTask.description}}</h3>
+    <p>Task Complete? {{selectedTask.done}}</p>
+    <h3>Edit Task</h3>
+    <label>Enter Task description:</label>
+    <input [(ngModel)]="selectedTask.description">
+    <label>Enter Task priority</label>
+    <br>
+    <input type="radio" [(ngModel)]="selectedTask.priority" [value]="1">1 (low)<br>
+    <input type="radio" [(ngModel)]="selectedTask.priority" [value]="3">3 (high)<br>
   `
 })
 
-// CLASS DEFINITION
+// CLASS DEFINITION / BACKEND
 export class AppComponent {
   currentFocus: string = 'Angular Homework';
   currentTime = new Date();
@@ -25,13 +34,14 @@ export class AppComponent {
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
   tasks: Task[] = [
-    new Task("Finish x, y, and z"),
-    new Task("Start on a, b, and c"),
-    new Task("Read up on i, j, k")
+    new Task("Finish x, y, and z", 1),
+    new Task("Start on a, b, and c", 3),
+    new Task("Read up on i, j, k", 3)
   ];
+  selectedTask: Task = this.tasks[0];
 
-  editTask() {
-      console.log("You just requested to edit a Task!");
+  editTask(clickedTask) {
+      this.selectedTask = clickedTask;
   }
 
   isDone(clickedTask: Task) {
@@ -42,9 +52,17 @@ export class AppComponent {
     }
   }
 
+  priorityColor(currentTask){
+    if (currentTask.priority === 3) {
+      return "bg-danger";
+    } else {
+      return "bg-info";
+    }
+  }
+
 }
 
 export class Task {
   public done: boolean = false;
-  constructor(public description: string) {}
+  constructor(public description: string, public priority: number) {}
 }
